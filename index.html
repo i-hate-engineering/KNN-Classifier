@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KNN Algorithm Demo</title>
+</head>
+<body>
+    <h1>KNN Algorithm Demo</h1>
+    <form id="knnForm">
+        <label for="filePath">File Path:</label>
+        <input type="text" id="filePath" name="filePath"><br><br>
+        <label for="kValue">K Value:</label>
+        <input type="number" id="kValue" name="kValue" min="1"><br><br>
+        <input type="button" value="Submit" onclick="runKNN()">
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        function runKNN() {
+            // Capture form inputs
+            var filePath = document.getElementById("filePath").value;
+            var kValue = document.getElementById("kValue").value;
+
+            // Simulate AJAX request using Fetch API
+            fetch("knn_script.py?filePath=" + filePath + "&kValue=" + kValue)
+                .then(function (response) {
+                    return response.text();
+                })
+                .then(function (output) {
+                    // Display the response on the HTML page
+                    document.getElementById("output").innerHTML = output;
+                });
+        }
+    </script>
+</body>
+</html>
